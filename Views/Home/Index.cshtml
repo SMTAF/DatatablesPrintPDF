@@ -1,0 +1,136 @@
+﻿@{
+    ViewData["Title"] = "الصفحة الرئيسية";
+}
+@section Styles {
+    <link rel="stylesheet" href="~/lib/datatables/css/dataTables.bootstrap5.min.css" />
+    <link rel="stylesheet" href="~/font-awesome/css/all.css" />
+    <link rel="stylesheet" href="~/font-awesome/css/all.min.css" />
+    <link rel="stylesheet" href="~/lib/datatables/css/jquery.datatables.min.css" />
+    <link rel="stylesheet" href="~/lib/datatables/css/buttons.datatables.min.css" />
+    <link rel="stylesheet" href="~/bootstrap-icons/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="~/bootstrap-icons/font/bootstrap-icons.min.css" />
+}
+
+<table dir="rtl" id="example" class="display" style="width:100%">
+    <thead>
+        <tr>
+            <th> الاسم </th>
+            <th> المركز </th>
+            <th> مكتب </th>
+            <th> العمر </ th>
+            <th> تاريخ البدء </th>
+            <th> الراتب </th>
+        </tr>
+    </thead>
+    <tbody>
+
+        <tr>
+            <td> نيكسون النمر </td>
+            <td> مهندس النظام </td>
+            <td> إدنبرة </td>
+            <td> 61 </td>
+            <td> 2011-04-25 </td>
+            <td> 320800 دولار </td>
+        </tr>
+        <tr>
+            <td> غاريت وينترز </td>
+            <td> محاسب </td>
+            <td> طوكيو </td>
+            <td> 63 </td>
+            <td> 2011-07-25 </td>
+            <td> 170750 دولارًا </td>
+        </tr>
+        <tr>
+            <td> أشتون كوكس </td>
+            <td> مؤلف فني مبتدئ </td>
+            <td> سان فرانسيسكو </td>
+            <td> 66 </td>
+            <td> 2009-01-12 </td>
+            <td> 86000 دولار </td>
+        </tr>
+        <tr>
+            <td> سيدريك كيلي </td>
+            <td> مطور جافا سكريبت أول </td>
+            <td> إدنبرة </td>
+            <td> 22 </td>
+            <td> 2012-03-29 </td>
+            <td> 433،060 دولارًا </td>
+        </tr>
+        <tr>
+            <td> إيري </td>
+            <td> محاسب </td>
+            <td> طوكيو </td>
+            <td> 33 </td>
+            <td> 2008-11-28 </td>
+            <td> 162700 دولار </td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <th> الاسم </th>
+            <th> المركز </th>
+            <th> مكتب </th>
+            <th> العمر </ th>
+            <th> تاريخ البدء </th>
+            <th> الراتب </th>
+        </tr>
+    </tfoot>
+</table>
+
+@section Scripts {
+    <script src="~/lib/datatables/js/jquery.datatables.min.js"></script>
+    <script src="~/lib/datatables/js/datatables.bootstrap5.min.js"></script>
+    <script src="~/lib/datatables/js/datatables.buttons.min.js"></script>
+    <script src="~/lib/datatables/js/jszip.min.js"></script>
+    <script src="~/lib/pdfmake/pdfmake.min.js"></script>
+    <script src="~/lib/pdfmake/vfs_fonts.js"></script>
+    <script src="~/lib/datatables/js/buttons.html5.min.js"></script>
+    <script src="~/lib/datatables/js/buttons.print.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#example').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    { extend: 'copy', text: 'نسخ', },
+                    { extend: 'csv', text: 'تصدير CSV' },
+                    { extend: 'excel', text: 'تصدير Excel' },
+                    {
+                        extend: 'pdf', text: 'تصدير PDF', exportOptions: { columns: ':visible' },
+                        customize: function (doc) {
+                            doc.defaultStyle.fontSize = 25;
+                            pdfMake.fonts = {
+                                DroidKufi: {
+                                    normal: 'DroidKufi-Regular.ttf',
+                                    bold: 'DroidKufi-Regular.ttf',
+                                    italics: 'DroidKufi-Regular.ttf',
+                                    bolditalics: 'DroidKufi-Regular.ttf'
+                                },
+                                NotoKufiArabicRegular: {
+                                    normal: 'NotoKufiArabic-Regular.ttf',
+                                    bold: 'NotoKufiArabic-Regular.ttf',
+                                    italics: 'NotoKufiArabic-Regular.ttf',
+                                    bolditalics: 'NotoKufiArabic-Regular.ttf'
+                                },
+                                NotoNaskhArabicRegular: {
+                                    normal: 'NotoNaskhArabic-Regular.ttf',
+                                    bold: 'NotoNaskhArabic-Regular.ttf',
+                                    italics: 'NotoNaskhArabic-Regular.ttf',
+                                    bolditalics: 'NotoNaskhArabic-Regular.ttf'
+                                },
+                                Roboto: {
+                                    normal: 'Roboto-Regular.ttf',
+                                    bold: 'Roboto-Medium.ttf',
+                                    italics: 'Roboto-Italic.ttf',
+                                    bolditalics: 'Roboto-MediumItalic.ttf'
+                                }
+                            }
+                            doc.defaultStyle.font = 'NotoNaskhArabicRegular';
+
+                        }
+                    },
+                    { extend: 'print', text: 'طباعة' },
+                ]
+            });
+        });
+    </script>
+}
